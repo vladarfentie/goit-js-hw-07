@@ -26,10 +26,23 @@ const images = [
 ];
 
 
-const gallery = document.querySelector('.gallery');
+const list = document.querySelector(".gallery");
+list.style.listStyle = "none";
+list.style.display = "flex";
+list.style.justifyContent = "center";
+list.style.flexWrap = "wrap";
 
-const galleryList = images
-  .map(({ url, alt }) => `<li><img src="${url}" alt="${alt}" /></li>`)
-  .join('');
+let addlist = "";
 
-gallery.insertAdjacentHTML('beforeend', galleryList);
+images.forEach(image => {
+  addlist += `
+    <li style="width: calc((100% - 24px) / 3); padding-bottom: 48px; padding-right: 24px;">
+      <img 
+        src="${image.url}" 
+        alt="${image.alt}" 
+        style="width: 100%; height: 100%; object-fit: cover;" 
+      />
+    </li>`;
+});
+
+list.insertAdjacentHTML("beforeend", addlist);
